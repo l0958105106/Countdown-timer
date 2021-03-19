@@ -1,30 +1,44 @@
 <template>
   <h1>{{ msg }}</h1>
-
-  <p>
-    <a href="https://vitejs.dev/guide/features.html" target="_blank">Vite Documentation</a> |
-    <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Documentation</a>
-  </p>
-
-  <button @click="state.count++">count is: {{ state.count }}</button>
-  <p>
-    Edit
-    <code>components/HelloWorld.vue</code> to test hot module replacement.
-  </p>
+  <p>{{ time.hour }} : {{ time.minute }} : {{ time.second }}</p>
+  <div class="p-field p-col-12 p-md-3">
+    <InputNumber
+      v-model="item.value"
+      mode="decimal"
+      showButtons
+      buttonLayout="vertical"
+      style="width: 4rem"
+      :min="0"
+      :max="59"
+      decrementButtonClass="p-button-secondary"
+      incrementButtonClass="p-button-secondary"
+      incrementButtonIcon="pi pi-plus"
+      decrementButtonIcon="pi pi-minus"
+    />
+  </div>
 </template>
 
 <script setup>
-import { defineProps, reactive } from 'vue'
-
+import { defineProps, reactive, ref } from "vue";
 defineProps({
-  msg: String
-})
+  msg: String,
+});
 
-const state = reactive({ count: 0 })
+// const state = ref(0);
+const state = reactive({
+  times: [
+    { name: "hour", value: 0 },
+    { name: "min", value: 0 },
+    { name: "hour", value: 0 },
+  ],
+});
 </script>
 
 <style scoped>
 a {
   color: #42b983;
+}
+.btn {
+  margin: 0 2em;
 }
 </style>
